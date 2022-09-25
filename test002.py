@@ -6,5 +6,8 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
   
 '''
-test002_tryagain
+<<<<<<< HEAD
+test002_tryagain_finish
+
 '''
+
