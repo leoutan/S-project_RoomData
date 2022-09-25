@@ -54,46 +54,4 @@ finally:
   )
   end_date[0].click()
 
-  #如果選擇人下拉選單自己跳出來就執行finally
-  #如果選單沒出現就執行except
-  try:
-    Select_traveller = WebDriverWait(browser, 10).until(
-      EC.presence_of_element_located((By.XPATH,'//div[@class="Traveller"]'))
-    )
-
-  #點選旅遊人數跑出下拉選單
-  except:
-    Select_traveller = WebDriverWait(browser, 10).until(
-      EC.presence_of_element_located((By.XPATH,'//div[@data-selenium="occupancyBox"]'))
-    )
-    Select_traveller.click()
-
-  #從下拉選單中選擇單人旅遊
-  finally:
-    travellers = WebDriverWait(browser, 10).until(
-      EC.presence_of_element_located((By.XPATH,'//div[@data-selenium="traveler-solo"]'))
-    )
-    travellers.click()
-  
-  #定位並點選搜尋按鈕
-  search = browser.find_element(By.XPATH, '//button[@data-selenium="searchButton"]')
-  search.click()
-  dont = WebDriverWait(browser,10).until(
-    EC.presence_of_element_located((By.XPATH,'//span[text()="不用了"]'))
-  )
-  dont.click()
-
-time.sleep(10)
-lists = WebDriverWait(browser, 10).until(
-  EC.presence_of_element_located((By.XPATH,'//h3[@class="PropertyCard__HotelName"]'))
-)
-result_url = browser.current_url
-#print(result_url)
-#response = requests.get(result_url)
-soup = BeautifulSoup(browser.page_source, 'html5lib')
-js = "window.scrollTo(0, document.body.scrollHeight);"
-browser.execute_script(js)
-HotelNames = soup.find_all('h3', class_='PropertyCard__HotelName')
-#print(soup)
-for HotelName in HotelNames:
-  print(HotelName.get_text())  
+ 
